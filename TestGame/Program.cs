@@ -68,7 +68,10 @@ namespace TestGame {
                         
                     
                     void ComputerMotion()               //Функция обработки дейсвий компьютера
-                    {if (Computer.Healts == Computer.Max_Healts && Computer.BulletCount >= 1)//Проверка на максимально колличиство здоровья
+                    {
+                        Computer.TimeToMove();
+                        
+                        if (Computer.Healts == Computer.Max_Healts && Computer.BulletCount >= 1)//Проверка на максимально колличиство здоровья
                         {                                                                   //что бы компьтер не пытался лечится с полным здоровьем 
                             Computer.Shot(Player);                                          //Если здоровья не хватает происходит случайно действие 
                         }

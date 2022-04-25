@@ -8,14 +8,14 @@ namespace TestGame
 {
     class Tank : IPlayer, IComputer  //В отдельном файле создан класс и все его методы
     {
-        public Tank(int H,int A,int D,string name) { Healts = H; Max_Healts = H; Armor = A; Damage = D; TankName = name; } //конструктор который принимает все данные для создания объекта
-                       
-        public string TankName { get ; set; }
+        public Tank(int H, int A, int D, string name) { Healts = H; Max_Healts = H; Armor = A; Damage = D; TankName = name; } //конструктор который принимает все данные для создания объекта
+
+        public string TankName { get; set; }
         public int Max_Healts { get; set; }
         public int Healts { get; set; }
         public int Armor { get; set; }
         public int Damage { get; set; }
-        public int BulletCount { get; set; }  = 6;
+        public int BulletCount { get; set; } = 6;
         Random rng = new Random();
 
         /*  public void Shot(Tank Target)       //Метод выстрела
@@ -56,10 +56,10 @@ namespace TestGame
              this.BulletCount = 6;   
          }
          */
-    
-       
+
+
         void IPlayer.Shot(IComputer Target)
-        {         
+        {
             int RandomChance = rng.Next(1, 11);//переменная для обработки событий Промаха и критического шанса
             if (RandomChance == 10)
             {
@@ -85,15 +85,22 @@ namespace TestGame
                 Healts += Armor;
                 Console.WriteLine(TankName + " Поднял Броню");
                 if (Healts > Max_Healts) { Healts = Max_Healts; }
-            }           
+            }
         }
 
         void IPlayer.Reloud()
         {
-            this.BulletCount = 6;          
+            this.BulletCount = 6;
         }
 
-        void IComputer.Shot(IPlayer Target)
+        
+        void IComputer.TimeToMove() {
+            Console.WriteLine("Происходить Выбор Компьютера");
+           
+           
+        }
+
+    void IComputer.Shot(IPlayer Target)
         {
             int RandomChance = rng.Next(1, 11);
             if (RandomChance == 10)
@@ -116,12 +123,13 @@ namespace TestGame
                 Console.WriteLine(TankName + " Поднял Броню");
                 if (Healts > Max_Healts) { Healts = Max_Healts; }               
         }
-
         void IComputer.Reloud()
         {
             this.BulletCount = 6;
             Console.WriteLine("Перезарядка Компьютера");
         }
+
+
     }
 
 }

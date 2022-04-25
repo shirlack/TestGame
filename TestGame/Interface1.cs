@@ -14,14 +14,10 @@ namespace TestGame
          int Armor { get => Armor; set => Armor = value; }
          int Damage { get => Damage; set => Damage = value; }
          int BulletCount { get => BulletCount; set => BulletCount = value; }
-
         void Shot(IComputer target);
         void GetArmor();
         void Reloud();
-
-
     }
-
      interface IComputer 
     {
         string TankName { get => TankName; set => TankName = value; }
@@ -30,12 +26,10 @@ namespace TestGame
         int Armor { get => Armor; set => Armor = value; }
         int Damage { get => Damage; set => Damage = value; }
         int BulletCount { get => BulletCount; set => BulletCount = value; }
-
         void Shot(IPlayer target);
         void GetArmor();
         void Reloud();
-
-
+        void TimeToMove();
     }
 
 
