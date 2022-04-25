@@ -10,7 +10,7 @@ namespace TestGame {
     {
         enum PlayerAction
         {
-            PlayerShot = 1,
+            playerShot = 1,
             PlayerRepair = 2,
             PlayerBuyAmmo = 3
         };
@@ -20,13 +20,14 @@ namespace TestGame {
 
             static void StartGame() //Вся программа работает в функции StartGame,в будущем это позволило бы создать меню игры , производить какие то надстройки перед запуском
             {
-                Tank Player = new Tank(200, 35, 50, "Игрок");   //Конструктор класса имеет три входных параметра при создании Здоровье,Броню,Урон и Имя объекта
-                Tank Computer = new Tank(300, 15, 60, "Компьютер");
+               IPlayer Player = new Tank(200, 35, 50, "Игрок");   //Конструктор класса имеет три входных параметра при создании Здоровье,Броню,Урон и Имя объекта
+               IComputer Computer = new Tank(300, 15, 60, "Компьютер");
 
                 ConsoleKeyInfo Action;     //Создаются дополнительные переменные что бы обрабатывать действия Игрока и Случайные действия Компьютера
                 int ComputerAction;
                 Random rng = new Random();
-                while (Player.Healts > 0 && Computer.Healts > 0)
+                
+                while (Player.Healts >0 && Computer.Healts > 0)
                 {
 
                     Console.WriteLine("Характеристики Игрока. Здоровье: " + Player.Healts + " Броня:" + Player.Armor + " Боекомплект: " + Player.BulletCount);
@@ -53,7 +54,7 @@ namespace TestGame {
                     }
                     else if (Action.Key == ConsoleKey.NumPad2 || Action.Key == ConsoleKey.D2)
                     {
-                        Player.getArmor();
+                        Player.GetArmor();
                         ComputerMotion();
                         
                     }
@@ -84,7 +85,7 @@ namespace TestGame {
                                  {Computer.Reloud();Console.WriteLine("Компьютер Перезарядился"); }
                                   break;
                                  case 2:                            
-                                   Computer.getArmor();                    
+                                   //Computer.getArmor();                    
                                    break;                
                               }
                         }
