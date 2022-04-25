@@ -14,10 +14,8 @@ namespace TestGame
         public int Max_Healts { get; set; }
         public int Healts { get; set; }
         public int Armor { get; set; }
-        public int Damage { get; set; } = 6;
-
-        
-        public int BulletCount = 6;
+        public int Damage { get; set; }
+        public int BulletCount { get; set; }  = 6;
         Random rng = new Random();
 
         /*  public void Shot(Tank Target)       //Метод выстрела
@@ -59,16 +57,9 @@ namespace TestGame
          }
          */
     
-        string IPlayer.TankName { get => TankName; set => TankName = value; }
-        int IPlayer.Max_Healts { get => Healts; set => Healts = value; }
-        int IPlayer.Healts{get => Healts; set => Healts = value; }
-        int IPlayer.Armor { get => Armor; set => Armor = value; }
-        int IPlayer.Damage { get =>Damage; set => Damage = value; }
-        int IPlayer.BulletCount { get => BulletCount; set => BulletCount = value; }
-
+       
         void IPlayer.Shot(IComputer Target)
-        {
-           
+        {         
             int RandomChance = rng.Next(1, 11);//переменная для обработки событий Промаха и критического шанса
             if (RandomChance == 10)
             {
@@ -102,17 +93,9 @@ namespace TestGame
             this.BulletCount = 6;          
         }
 
-        string IComputer.TankName { get => TankName; set => TankName = value; }
-        int IComputer.Max_Healts { get => Healts; set => Healts = value; }
-        int IComputer.Healts { get => Healts; set => Healts = value; }
-        int IComputer.Armor { get => Armor; set => Armor = value; }
-        int IComputer.Damage { get => Damage; set => Damage = value; }
-        int IComputer.BulletCount { get => BulletCount; set => BulletCount = value; }
-
         void IComputer.Shot(IPlayer Target)
         {
-          
-            int RandomChance = rng.Next(1, 11);//переменная для обработки событий Промаха и критического шанса
+            int RandomChance = rng.Next(1, 11);
             if (RandomChance == 10)
             {
                 Target.Healts -= Convert.ToInt32(Damage * 1.2) - Target.Armor;
@@ -127,7 +110,6 @@ namespace TestGame
                 BulletCount--;
             }            
         }
-
         void IComputer.GetArmor()
         {      
                 Healts += Armor;
